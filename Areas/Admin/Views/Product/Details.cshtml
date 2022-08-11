@@ -1,0 +1,83 @@
+﻿@model E_commerce_app.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    dl dd{
+        border-bottom : 1px solid rgb(208, 212, 226);
+    }
+</style>
+
+<div>
+    <h3>Product Details</h3>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10 font-weight-bold">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10 font-weight-bold">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10 font-weight-bold">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsHome)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.IsHome)
+            {
+                <label class="btn btn-sm btn-success"><i class="bi bi-check-lg"></i> Yes</label>
+            }
+            else
+            {
+                <label class="btn  btn-sm btn-danger"><i class="bi bi-x-lg"></i> No</label>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IsStock)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.IsStock)
+            {
+                <label class="btn btn-sm btn-success"><i class="bi bi-check-lg"></i> Yes</label>
+            }
+            else
+            {
+                <label class="btn  btn-sm btn-danger"><i class="bi bi-x-lg"></i> No</label>
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd class="col-sm-10 font-weight-bold">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+        <div class="col-md-4 mt-3">
+
+            @if (Model.Image == null)
+            {
+                <img src="~/images/image/image-not-found-.jpg" width="200" height="150" />
+            }
+            else
+            {
+                <img src="@Model.Image" width="200" height="150" />
+            }
+      </div>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success"><i class="bi bi-pencil"></i> Edit</a>
+    <a asp-action="Index" class="btn btn-primary">Back to List</a>
+</div>
