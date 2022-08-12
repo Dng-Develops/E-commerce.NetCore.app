@@ -49,10 +49,9 @@ namespace E_commerce_app.Areas.Customer.Controllers
 
         [HttpPost]
         [ActionName("Index")]
-        public async Task<IActionResult> IndexPost()
-        {
-
-            var claimsIdentity = (ClaimsIdentity)User.Identity; // Get currenly login user
+        public async Task<IActionResult> IndexPost()  // This action is more or less the same e mail confirmation as Registeration uses
+        { 
+            var claimsIdentity = (ClaimsIdentity)User.Identity; 
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
             var user = _db.ApplicationUsers.FirstOrDefault(i => i.Id == claim.Value);
             if (user == null)
@@ -112,6 +111,23 @@ namespace E_commerce_app.Areas.Customer.Controllers
 
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Summary() 
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity; // Get currenly login user
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            ShoppingCartVM = new ShoppingCartVM()
+            {
+                OrderHeader = new Models.OrderHeader(),
+                ListCart = _db.ShoppingCarts.Where(i => i.ApplicationUserId == claim.Value).Include(i => i.Product) // Add shopping cart and include product
+            };
+            foreach (var item in ShoppingCartVM.ListCart)
+            {
+                item.Price = item.Product.Price;
+                ShoppingCartVM.OrderHeader.OrderTotal += (item.Count * item.Product.Price);
+            }
+            return View(ShoppingCartVM);
         }
     }
 }
