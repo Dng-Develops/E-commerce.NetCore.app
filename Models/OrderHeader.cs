@@ -28,6 +28,17 @@ namespace E_commerce_app.Models
         public string City { get; set; }
         [Required]
         public string PostCode { get; set; }
+        [Required]
+        public string CardName { get; set; }
+        [Required]
+        public string CardNumber { get; set; }
+        [Required]
+        public string ExpirationMonth { get; set; }
+        [Required]
+        public string ExpirationYear { get; set; }
+        [Required]
+        public string Cvc { get; set; }
+
 
     }
 }

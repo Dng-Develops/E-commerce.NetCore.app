@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WscnWKWODKvA77jUF3Z1Rr30a8mtBSIoJunuvxLRZ4p9sL8w8f5rW2X4vWaeVJ5I/tCI8U34ALzyxRdjKfGqFw==",
+  "dgSpecHash": "SQkfUuaBW4gRzkgAT9wt0juoCEuIIplzOAj9KaHc/5/tE08tv4wvrTMR2o5uiZ61o50fZqF6wzwKcIz1DHngWA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Hz.Ord.Prof.Dr.Deniz\\Desktop\\Web Uygulamalar\\My_Portfolio\\E-commerce_app\\E_commerce_app.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hz.Ord.Prof.Dr.Deniz\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\Hz.Ord.Prof.Dr.Deniz\\.nuget\\packages\\iyzipay\\2.1.39\\iyzipay.2.1.39.nupkg.sha512",
     "C:\\Users\\Hz.Ord.Prof.Dr.Deniz\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\5.0.12\\microsoft.aspnetcore.authentication.facebook.5.0.12.nupkg.sha512",
     "C:\\Users\\Hz.Ord.Prof.Dr.Deniz\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\5.0.12\\microsoft.aspnetcore.authentication.google.5.0.12.nupkg.sha512",
     "C:\\Users\\Hz.Ord.Prof.Dr.Deniz\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.17\\microsoft.aspnetcore.cryptography.internal.5.0.17.nupkg.sha512",

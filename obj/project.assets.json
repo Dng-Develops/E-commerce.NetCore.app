@@ -11,6 +11,18 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
+      "Iyzipay/2.1.39": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "compile": {
+          "lib/netstandard2.0/Iyzipay.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Iyzipay.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Authentication.Facebook/5.0.12": {
         "type": "package",
         "compile": {
@@ -2249,6 +2261,20 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "Iyzipay/2.1.39": {
+      "sha512": "e3NdsIBQuEWMfPHY5hqIorHqP5tldHwNSztdxwKKVgUe/ajtGlYFTthfdMARk4mkHkclvTsz4DI/V7xs3xJwJg==",
+      "type": "package",
+      "path": "iyzipay/2.1.39",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "iyzipay.2.1.39.nupkg.sha512",
+        "iyzipay.nuspec",
+        "lib/net45/Iyzipay.dll",
+        "lib/netstandard1.3/Iyzipay.dll",
+        "lib/netstandard2.0/Iyzipay.dll"
       ]
     },
     "Microsoft.AspNetCore.Authentication.Facebook/5.0.12": {
@@ -7650,6 +7676,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Iyzipay >= 2.1.39",
       "Microsoft.AspNetCore.Authentication.Facebook >= 5.0.12",
       "Microsoft.AspNetCore.Authentication.Google >= 5.0.12",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 5.0.17",
@@ -7708,6 +7735,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Iyzipay": {
+            "target": "Package",
+            "version": "[2.1.39, )"
+          },
           "Microsoft.AspNetCore.Authentication.Facebook": {
             "target": "Package",
             "version": "[5.0.12, )"

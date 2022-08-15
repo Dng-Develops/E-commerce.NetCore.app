@@ -85,6 +85,36 @@
                                 </li>
                             </ul>
                         </div>
+                        @*CC Form*@
+                         <div class="mb-3 row">
+                            <label asp-for="OrderHeader.CardName" class="col-sm-4 col-form-label">Name on card</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="cardName" class="form-control" asp-for="OrderHeader.CardName">
+                                <span asp-validation-for="OrderHeader.CardName" class="text-danger"></span>
+                            </div>
+                        </div>
+                         <div class="mb-3 row">
+                            <label asp-for="OrderHeader.CardNumber" class="col-sm-4 col-form-label">Card number</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="cardNumber" class="form-control" asp-for="OrderHeader.CardNumber">
+                                <span asp-validation-for="OrderHeader.CardNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                          <div class="mb-3 row">
+                            <div class="col-sm-4">
+                                <input type="text" id="cardExpMonth" class="form-control" asp-for="OrderHeader.ExpirationMonth" placeholder="MM">
+                                <span asp-validation-for="OrderHeader.ExpirationMonth" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" id="cardExpYear" class="form-control" asp-for="OrderHeader.ExpirationYear" placeholder="YY">
+                                <span asp-validation-for="OrderHeader.ExpirationYear" class="text-danger"></span>
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" id="carCvc" class="form-control" asp-for="OrderHeader.Cvc" placeholder="CVC">
+                                <span asp-validation-for="OrderHeader.Cvc" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <a href="#" id="mockTest">Click Here For Mock Test Card</a>
                     </div>
                 </div>
             </div>
@@ -103,6 +133,8 @@
         </div>
     </div>
 </form>
+
+<script type="text/javascript" src="/js/mockCards.js"></script>
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial"/>
