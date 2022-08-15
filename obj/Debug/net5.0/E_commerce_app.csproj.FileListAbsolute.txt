@@ -999,3 +999,4 @@ C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_ap
 C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\E_commerce_app.genruntimeconfig.cache
 C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\ref\E_commerce_app.dll
 C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\Razor\Areas\Customer\Views\Cart\Summary.cshtml.g.cs
+C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\Razor\Areas\Customer\Views\Cart\OrderReceived.cshtml.g.cs

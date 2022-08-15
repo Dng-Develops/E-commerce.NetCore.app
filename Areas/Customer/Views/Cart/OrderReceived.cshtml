@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "OrderReceived";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3></h3>
+<div class="container d-flex justify-content-center">
+<div class="card text-center w-50 ">
+  <div class="card-header text-success">
+    <i class="bi bi-bag-check"></i>  Your order has been received. 
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Thank you for your purchase! </h5>
+    <p class="card-text"> Your purchase will be shipped as soon as possible.. <i class="bi bi-truck"></i></p>
+    <a asp-area="Customer" asp-action="Index" asp-controller="Home" class="btn btn-primary"><i class="bi bi-house-door"></i> Continue Shopping</a>
+  </div>
+</div>
+</div>

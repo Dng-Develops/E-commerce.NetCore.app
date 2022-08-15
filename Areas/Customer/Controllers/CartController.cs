@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -128,6 +129,42 @@ namespace E_commerce_app.Areas.Customer.Controllers
                 ShoppingCartVM.OrderHeader.OrderTotal += (item.Count * item.Product.Price);
             }
             return View(ShoppingCartVM);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Summary(ShoppingCartVM model)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity; 
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            ShoppingCartVM.ListCart = _db.ShoppingCarts.Where(i => i.ApplicationUserId == claim.Value).Include(i => i.Product);
+            ShoppingCartVM.OrderHeader.OrderStatus = Other.Purchase_Inprocess;
+            ShoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
+            ShoppingCartVM.OrderHeader.OrderDate = DateTime.Now;
+            _db.OrderHeaders.Add(ShoppingCartVM.OrderHeader);
+            _db.SaveChanges();
+            foreach (var item in ShoppingCartVM.ListCart)
+            {
+                item.Price = item.Product.Price;
+                OrderDetails orderDetails = new OrderDetails()
+                {
+                    ProductId = item.ProductId,
+                    OrderId = ShoppingCartVM.OrderHeader.Id,
+                    Price = item.Price,
+                    Count = item.Count,
+                };
+                ShoppingCartVM.OrderHeader.OrderTotal += item.Count * item.Product.Price;
+                model.OrderHeader.OrderTotal += item.Count * item.Product.Price;
+                _db.OrderDetails.Add(orderDetails);
+            }
+            _db.ShoppingCarts.RemoveRange(ShoppingCartVM.ListCart); // Reset Cart / Remove items form shoppingcart after ordering process..
+            _db.SaveChanges();
+            HttpContext.Session.SetInt32(Other.ssShoppingCart, 0); // Clear the session data
+            return RedirectToAction("OrderReceived"); 
+        }
+
+        public IActionResult OrderReceived()
+        {
+            return View();
         }
     }
 }
