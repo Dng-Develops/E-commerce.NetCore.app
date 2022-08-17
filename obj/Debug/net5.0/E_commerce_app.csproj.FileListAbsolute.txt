@@ -1001,3 +1001,4 @@ C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_ap
 C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\Razor\Areas\Customer\Views\Cart\Summary.cshtml.g.cs
 C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\Razor\Areas\Customer\Views\Cart\OrderReceived.cshtml.g.cs
 C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\bin\Debug\net5.0\Iyzipay.dll
+C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\Razor\Areas\Admin\Views\Order\Index.cshtml.g.cs

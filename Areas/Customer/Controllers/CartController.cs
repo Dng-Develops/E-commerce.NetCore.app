@@ -174,7 +174,7 @@ namespace E_commerce_app.Areas.Customer.Controllers
             options.SecretKey = "Your Secret key goes here";
             options.BaseUrl = "https://sandbox-api.iyzipay.com";
 
-            CreatePaymentRequest request = new CreatePaymentRequest();
+            CreatePaymentRequest request = new CreatePaymentRequest(); 
             request.Locale = Locale.TR.ToString();
             request.ConversationId = new Random().Next(1111,9999).ToString();
             request.Price = model.OrderHeader.OrderTotal.ToString();

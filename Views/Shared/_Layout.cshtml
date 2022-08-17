@@ -29,7 +29,7 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-white ml-3" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                <a class="nav-link text-white ml-3" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door"></i> Home</a>
                             </li>
                             @if (User.IsInRole(Other.Role_Admin))
                             {
@@ -41,27 +41,34 @@
                                         <li><a asp-area="Admin" asp-controller="Category" asp-action="Index" class="dropdown-item">Categories</a></li>
                                         <li><a asp-area="Admin" asp-controller="Product" asp-action="Index" class="dropdown-item">Products</a></li>
                                         <li><a asp-area="Admin" asp-controller="User" asp-action="Index" class="dropdown-item">Users</a></li>
+                                        <li><a asp-area="Admin" asp-controller="Order" asp-action="Index" class="dropdown-item">Orders</a></li>
 
                                     </ul>
                                 </li>
                             }
+                            else if(User.Identity.IsAuthenticated)
+                            {
+                               <li class="nav-item">
+                                <a class="nav-link text-white ml-3" asp-area="Admin" asp-controller="Order" asp-action="Index"><i class="bi bi-card-checklist"></i> Orders</a>
+                            </li>  
+                            }
                             @if (User.Identity.IsAuthenticated && HttpContextAccessor.HttpContext.Session.GetInt32(Other.ssShoppingCart) != null)
                             {
                                 <li class="nav-item" style="color:white">
-                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link text-white">
+                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link text-white ml-3">
                                     @{
                                         var count = HttpContextAccessor.HttpContext.Session.GetInt32(Other.ssShoppingCart);
                                     }
-                                    <i class="bi bi-cart2"></i> (@count)
+                                    <i class="bi bi-cart2"></i> Cart (@count)
                                     </a> 
                                 </li>
                             }
                             else
                             {
                                 <li class="nav-item" style="color:white">
-                                <a href="Identity/Account/Login" class="nav-link text-white"> 
+                                <a href="Identity/Account/Login" class="nav-link text-white ml-3"> 
 
-                                    <i class="bi bi-cart2"></i> (0)
+                                    <i class="bi bi-cart2"></i> Cart (0)
                                 </a>
                                 </li>
                             }
