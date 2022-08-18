@@ -5,97 +5,119 @@
 }
 
 <style>
-    dl dd{
-        border-bottom : 1px solid rgb(208, 212, 226);
+    dl dd {
+        border-bottom: 1px solid rgb(208, 212, 226);
     }
 </style>
 
 <form method="post">
-    <input hidden asp-for="OrderHeader.Id"/>
+    <input hidden asp-for="OrderHeader.Id" />
     <h3>Order Details</h3>
-<hr />
+    <hr />
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-<div>
-    <dl class="row">
-        <dt class = "col-sm-4">
-            Name:
-        </dt>
-        <dd class = "col-sm-8 font-weight-bold">
-            @Model.OrderHeader.Name
-        </dd>
-          <dt class = "col-sm-4">
-            Surname:
-        </dt>
-        <dd class = "col-sm-8 font-weight-bold">
-            @Model.OrderHeader.Surname
-        </dd>
-          <dt class = "col-sm-4">
-            Phone:
-        </dt>
-        <dd class = "col-sm-8 font-weight-bold">
-            @Model.OrderHeader.PhoneNumber
-        </dd>
-          <dt class = "col-sm-4">
-            Address:
-        </dt>
-        <dd class = "col-sm-8 font-weight-bold">
-            @Model.OrderHeader.Adrdess
-        </dd>
-          <dt class = "col-sm-4">
-            County:
-        </dt>
-        <dd class = "col-sm-8 font-weight-bold">
-            @Model.OrderHeader.County
-        </dd>
-          <dt class = "col-sm-4">
-            City:
-        </dt>
-        <dd class = "col-sm-8 font-weight-bold">
-            @Model.OrderHeader.City
-        </dd>
-          <dt class = "col-sm-4">
-            Postcode:
-        </dt>
-        <dd class = "col-sm-8 font-weight-bold">
-            @Model.OrderHeader.PostCode
-        </dd>
-          <dt class = "col-sm-4">
-            Order Date:
-        </dt>
-        <dd class = "col-sm-8 font-weight-bold">
-            @Model.OrderHeader.OrderDate.ToShortDateString();
-        </dd>
-    </dl>
-    
- 
-</div>
-</div>
+                <div>
+                    <dl class="row">
+                        <dt class="col-sm-4">
+                            Name:
+                        </dt>
+                        <dd class="col-sm-8 font-weight-bold">
+                            @Model.OrderHeader.Name
+                        </dd>
+                        <dt class="col-sm-4">
+                            Surname:
+                        </dt>
+                        <dd class="col-sm-8 font-weight-bold">
+                            @Model.OrderHeader.Surname
+                        </dd>
+                        <dt class="col-sm-4">
+                            Phone:
+                        </dt>
+                        <dd class="col-sm-8 font-weight-bold">
+                            @Model.OrderHeader.PhoneNumber
+                        </dd>
+                        <dt class="col-sm-4">
+                            Address:
+                        </dt>
+                        <dd class="col-sm-8 font-weight-bold">
+                            @Model.OrderHeader.Adrdess
+                        </dd>
+                        <dt class="col-sm-4">
+                            County:
+                        </dt>
+                        <dd class="col-sm-8 font-weight-bold">
+                            @Model.OrderHeader.County
+                        </dd>
+                        <dt class="col-sm-4">
+                            City:
+                        </dt>
+                        <dd class="col-sm-8 font-weight-bold">
+                            @Model.OrderHeader.City
+                        </dd>
+                        <dt class="col-sm-4">
+                            Postcode:
+                        </dt>
+                        <dd class="col-sm-8 font-weight-bold">
+                            @Model.OrderHeader.PostCode
+                        </dd>
+                        <dt class="col-sm-4">
+                            Order Date:
+                        </dt>
+                        <dd class="col-sm-8 font-weight-bold">
+                            @Model.OrderHeader.OrderDate.ToShortDateString();
+                        </dd>
+                    </dl>
+
+
+                </div>
+            </div>
             <div class="col-md-6">
                 <div class="col-md-12">
-                            <ul class="list-group mb-3">
-                                @foreach (var item in Model.OrderDetails)
-                                {       
-                                <li class="list-group-item d-flex justify-content-between lh-sm">
-                                    <div>
-                                        <h6 class="my-0">@item.Product.Title</h6>
-                                        <small class="text-muted">Quantity : @item.Count</small>
-                                    </div>
-                                    <span class="text-muted">@((item.Count*item.Product.Price).ToString("0.00")) ₺</span>
-                                </li>
-                                }
-                                
-                                <li class="list-group-item d-flex justify-content-between bg-light">
-                                    <div class="text-success">
-                                        <h6 class="my-0">Total : </h6>
-                                       
-                                    </div>
-                                    <span class="text-success">@(Model.OrderHeader.OrderTotal.ToString("0.00")) ₺</span>
-                                </li>
-                            </ul>
-                        </div>
+                    <ul class="list-group mb-3">
+                        @foreach (var item in Model.OrderDetails)
+                        {
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div>
+                                    <h6 class="my-0">@item.Product.Title</h6>
+                                    <small class="text-muted">Quantity : @item.Count</small>
+                                </div>
+                                <span class="text-muted">@((item.Count*item.Product.Price).ToString("0.00")) ₺</span>
+                            </li>
+                        }
+
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">Total : </h6>
+
+                            </div>
+                            <span class="text-success">@(Model.OrderHeader.OrderTotal.ToString("0.00")) ₺</span>
+                        </li>
+                   
+                    @if(User.IsInRole(Other.Role_Admin))
+                    {
+                        <br />
+                        @if(Model.OrderHeader.OrderStatus == Other.Purchase_Confirmed)
+                        {
+                           <input type="submit" value="Ship This Order" class="btn btn-primary form-control" formaction="/Admin/Order/ShipOrder" formmethod="post"/>
+                        }
+                    }
+                    @if(User.IsInRole(Other.Role_Admin))
+                    {
+                       
+                        @if(Model.OrderHeader.OrderStatus == Other.Purchase_Inprocess)
+                        {
+                           <input type="submit" value="Confirm This Order" class="btn btn-primary form-control" formaction="/Admin/Order/ConfirmOrder" formmethod="post"/>
+                        }
+                    }
+                    else
+                    {
+                         <br />
+                        <label class="btn btn-info form-control">@Model.OrderHeader.OrderStatus</label>
+                    }
+                     </ul>
+                </div>
             </div>
-</div>
-</div>
+        </div>
+    </div>
 </form>

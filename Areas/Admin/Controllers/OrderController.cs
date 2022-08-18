@@ -93,5 +93,27 @@ namespace E_commerce_app.Areas.Admin.Controllers
             };
             return View(OrderVM);
         }
+
+        /* Order State */
+
+        [HttpPost]
+        [Authorize(Roles = Other.Role_Admin)]
+        public IActionResult ConfirmOrder()
+        {
+            OrderHeader orderHeader = _db.OrderHeaders.FirstOrDefault(i=>i.Id==OrderVM.OrderHeader.Id);
+            orderHeader.OrderStatus = Other.Purchase_Confirmed;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = Other.Role_Admin)]
+        public IActionResult ShipOrder()
+        {
+            OrderHeader orderHeader = _db.OrderHeaders.FirstOrDefault(i => i.Id == OrderVM.OrderHeader.Id);
+            orderHeader.OrderStatus = Other.Purchase_Shipped;
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
