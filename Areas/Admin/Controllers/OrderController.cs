@@ -14,6 +14,8 @@ namespace E_commerce_app.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         private readonly ApplicationDbContext _db;
+        [BindProperty]
+        public OrderDetailsVM OrderVM { get; set; }
         public OrderController(ApplicationDbContext db)
         {
             _db = db;
@@ -33,6 +35,63 @@ namespace E_commerce_app.Areas.Admin.Controllers
                 orderHeadersList = _db.OrderHeaders.Where(i => i.ApplicationUserId == claim.Value).Include(i => i.ApplicationUser);
             }
             return View(orderHeadersList);
+        }
+        public IActionResult InProcess() 
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            IEnumerable<OrderHeader> orderHeadersList;
+            if (User.IsInRole(Other.Role_Admin))
+            {
+                orderHeadersList = _db.OrderHeaders.Where(i => i.OrderStatus == Other.Purchase_Inprocess);
+            }
+            else
+            {
+                orderHeadersList = _db.OrderHeaders.Where(i => i.ApplicationUserId == claim.Value && i.OrderStatus == Other.Purchase_Inprocess).Include(i => i.ApplicationUser);
+            }
+            return View(orderHeadersList);
+        }
+
+        public IActionResult Approved()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            IEnumerable<OrderHeader> orderHeadersList;
+            if (User.IsInRole(Other.Role_Admin))
+            {
+                orderHeadersList = _db.OrderHeaders.Where(i => i.OrderStatus == Other.Purchase_Confirmed);
+            }
+            else
+            {
+                orderHeadersList = _db.OrderHeaders.Where(i => i.ApplicationUserId == claim.Value && i.OrderStatus == Other.Purchase_Confirmed).Include(i => i.ApplicationUser);
+            }
+            return View(orderHeadersList);
+        }
+
+        public IActionResult Shipped()
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            IEnumerable<OrderHeader> orderHeadersList;
+            if (User.IsInRole(Other.Role_Admin))
+            {
+                orderHeadersList = _db.OrderHeaders.Where(i => i.OrderStatus == Other.Purchase_Shipped);
+            }
+            else
+            {
+                orderHeadersList = _db.OrderHeaders.Where(i => i.ApplicationUserId == claim.Value && i.OrderStatus == Other.Purchase_Shipped).Include(i => i.ApplicationUser);
+            }
+            return View(orderHeadersList);
+        }
+
+        public IActionResult Details(int id)
+        {
+            OrderVM = new OrderDetailsVM()
+            {
+                OrderHeader = _db.OrderHeaders.FirstOrDefault(i => i.Id == id),
+                OrderDetails = _db.OrderDetails.Where(x => x.OrderId == id ).Include(x => x.Product)
+            };
+            return View(OrderVM);
         }
     }
 }
