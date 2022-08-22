@@ -1,0 +1,44 @@
+﻿@model IEnumerable<E_commerce_app.Models.Product>
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="container">
+        <div class="row">
+            @await Component.InvokeAsync("CategoryList")
+            @if (Model.Count() > 0)
+            {
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 mt-3">
+                        <div class="card">
+                            <div class="card-header font-weight-bold text-secondary ">
+                                @item.Title
+                            </div>
+                            <img src="@item.Image" class="card-img-top " alt="product image" style="height:200px;">
+                            <div class="card-body">
+                                <p class="card-text">@item.Title</p>
+                            </div>
+                            <div class="card-footer">
+                                <label style="font-size:20px; color: #0096FF; "><b>@item.Price.ToString("0.00") ₺</b> </label>
+                                <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id" class="btn btn-outline-primary" style="float:right;">Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-md-9">
+                    <div class="alert alert-warning text-center ">
+                        <span>No Results Found</span>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

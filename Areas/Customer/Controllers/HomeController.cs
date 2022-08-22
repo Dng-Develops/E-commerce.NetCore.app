@@ -97,6 +97,15 @@ namespace E_commerce_app.Areas.Customer.Controllers
             return View(products);
         }
 
+        public IActionResult Search(string query)
+        {
+            if (!String.IsNullOrEmpty(query))
+            {
+                var search = _db.Products.Where(i => i.Title.Contains(query) || i.Description.Contains(query));
+                return View(search);
+            }
+            return View();
+        }
 
         public IActionResult Privacy()
         {

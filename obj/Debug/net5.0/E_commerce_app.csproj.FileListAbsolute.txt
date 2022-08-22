@@ -1009,3 +1009,4 @@ C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_ap
 C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ViewStart.cshtml.g.cs
 C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\Razor\Areas\Customer\Views\Home\Components\CategoryList\Default.cshtml.g.cs
 C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\Razor\Areas\Customer\Views\Home\CategoryDetails.cshtml.g.cs
+C:\Users\Hz.Ord.Prof.Dr.Deniz\Desktop\Web Uygulamalar\My_Portfolio\E-commerce_app\obj\Debug\net5.0\Razor\Areas\Customer\Views\Home\Search.cshtml.g.cs
