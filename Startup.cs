@@ -71,7 +71,7 @@ namespace E_commerce_app
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage(); 
                 app.UseMigrationsEndPoint();
             }
             else

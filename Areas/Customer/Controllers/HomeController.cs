@@ -90,6 +90,13 @@ namespace E_commerce_app.Areas.Customer.Controllers
             return View(Scart);
         }
 
+        public IActionResult CategoryDetails(int id)
+        {
+           var products = _db.Products.Where(i => i.CategoryId == id).ToList();
+            ViewBag.CategoryId = id;
+            return View(products);
+        }
+
 
         public IActionResult Privacy()
         {
@@ -101,5 +108,7 @@ namespace E_commerce_app.Areas.Customer.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }
