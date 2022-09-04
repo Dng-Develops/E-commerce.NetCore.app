@@ -7,6 +7,6 @@
     "\\Areas\\Customer\\Views",
     "\\Areas\\Customer\\Views\\Home"
   ],
-  "SelectedNode": "\\E_commerce_app.sln",
+  "SelectedNode": "\\Areas\\Customer\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

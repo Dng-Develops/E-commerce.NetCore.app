@@ -18,11 +18,17 @@
           background:  linear-gradient(to right, #343a40, rgba(0, 123, 255, 0.5)); 
           color: #fff ;
     }
+
+    .nav-hover:hover{
+        outline: 2px solid #fff;
+    }
+
 </style>
 <body>
     <header>
         <div class="container">
-            <nav class="L-gradient navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 rounded text-white">
+
+ <nav class="L-gradient navbar navbar-expand-xl navbar-dark bg-dark border-bottom box-shadow mb-3 rounded text-white">
                 <div class="container">
                     <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
                         <img src="~/images/image/online-shopping.png" width="50px" height="50px" alt="app-logo" />
@@ -33,15 +39,15 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <div class="navbar-collapse collapse">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
-                                <a class="nav-link text-white ml-3" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door"></i> Home</a>
+                                <a class="nav-link text-white ml-3 nav-hover" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door"></i> Home</a>
                             </li>
                             @if (User.IsInRole(Other.Role_Admin))
                             {
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white ml-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle text-white ml-3 nav-hover" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="bi bi-person-check"></i> Admin Panel
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -56,13 +62,13 @@
                             else if(User.Identity.IsAuthenticated)
                             {
                                <li class="nav-item">
-                                <a class="nav-link text-white ml-3" asp-area="Admin" asp-controller="Order" asp-action="Index"><i class="bi bi-card-checklist"></i> Orders</a>
+                                <a class="nav-link text-white ml-3 nav-hover" asp-area="Admin" asp-controller="Order" asp-action="Index"><i class="bi bi-card-checklist"></i> Orders</a>
                             </li>  
                             }
                             @if (User.Identity.IsAuthenticated && HttpContextAccessor.HttpContext.Session.GetInt32(Other.ssShoppingCart) != null)
                             {
-                                <li class="nav-item" style="color:white">
-                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link text-white ml-3">
+                                <li class="nav-item " style="color:white">
+                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link text-white ml-3 nav-hover ">
                                     @{
                                         var count = HttpContextAccessor.HttpContext.Session.GetInt32(Other.ssShoppingCart);
                                     }
@@ -73,7 +79,7 @@
                             else
                             {
                                 <li class="nav-item" style="color:white">
-                                <a href="Identity/Account/Login" class="nav-link text-white ml-3"> 
+                                <a href="Identity/Account/Login" class="nav-link text-white ml-3 nav-hover"> 
 
                                     <i class="bi bi-cart2"></i> Cart (0)
                                 </a>
@@ -81,13 +87,80 @@
                             }
                         </ul>
                         <form method="post" action="/Customer/Home/Search" class="form-inline mr-2" >
-                            <input name="query" type="text " class="form-control mr-2" placeholder="Search" />
-                            <button class="btn btn-outline-light" type="submit"><i class="bi bi-search"></i> Search</button>
+                            <input name="query" type="text " class="form-control mr-1" placeholder="Search" />
+                            <button class="btn btn-outline-light mr-1" type="submit"><i class="bi bi-search"></i></button>
                         </form>
                         <partial name="_LoginPartial" />
                     </div>
                 </div>
             </nav>
+
+            <!-- <nav class="L-gradient navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3 rounded text-white">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/image/online-shopping.png" width="50px" height="50px" alt="app-logo" />
+                        @*<a href="https://www.flaticon.com/free-icons/ecommerce" style="display:none;" title="ecommerce icons">Ecommerce icons created by Freepik - Flaticon</a>*@
+                        <span>Dng-</span><span class="text-primary">Shop</span>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-white ml-3 nav-hover" asp-area="" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door"></i> Home</a>
+                            </li>
+@*                            @if (User.IsInRole(Other.Role_Admin))
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white ml-3 nav-hover" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-check"></i> Admin Panel
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a asp-area="Admin" asp-controller="Category" asp-action="Index" class="dropdown-item">Categories</a></li>
+                                        <li><a asp-area="Admin" asp-controller="Product" asp-action="Index" class="dropdown-item">Products</a></li>
+                                        <li><a asp-area="Admin" asp-controller="User" asp-action="Index" class="dropdown-item">Users</a></li>
+                                        <li><a asp-area="Admin" asp-controller="Order" asp-action="Index" class="dropdown-item">Orders</a></li>
+
+                                    </ul>
+                                </li>
+                            }
+                            else if(User.Identity.IsAuthenticated)
+                            {
+                               <li class="nav-item">
+                                <a class="nav-link text-white ml-3 nav-hover" asp-area="Admin" asp-controller="Order" asp-action="Index"><i class="bi bi-card-checklist"></i> Orders</a>
+                            </li>  
+                            }
+                            @if (User.Identity.IsAuthenticated && HttpContextAccessor.HttpContext.Session.GetInt32(Other.ssShoppingCart) != null)
+                            {
+                                <li class="nav-item " style="color:white">
+                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link text-white ml-3 nav-hover ">
+                                    @{
+                                        var count = HttpContextAccessor.HttpContext.Session.GetInt32(Other.ssShoppingCart);
+                                    }
+                                    <i class="bi bi-cart2"></i> Cart (@count)
+                                    </a> 
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item" style="color:white">
+                                <a href="Identity/Account/Login" class="nav-link text-white ml-3 nav-hover"> 
+
+                                    <i class="bi bi-cart2"></i> Cart (0)
+                                </a>
+                                </li>
+                            }*@
+                        </ul>
+                        <form method="post" action="/Customer/Home/Search" class="form-inline mr-2" >
+                            <input name="query" type="text " class="form-control mr-1" placeholder="Search" />
+                            <button class="btn btn-outline-light mr-1" type="submit"><i class="bi bi-search"></i></button>
+                        </form>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </nav> -->
         </div>
     </header>
     <div class="container">
